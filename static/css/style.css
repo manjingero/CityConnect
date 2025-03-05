@@ -1,0 +1,353 @@
+/* -------------------------
+   Reset & Base
+------------------------- */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #fafafa;
+  color: #333;
+}
+/* The lobby uses the default container (~960px max width) */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* -------------------------
+   Headings
+------------------------- */
+h1, h3, h5 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+h1 {
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+/* -------------------------
+   Lobby Section
+------------------------- */
+#lobby-section {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+#lobby-section h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+/* -------------------------
+   Game Section (when in a room)
+   (Only applies when inside a lobby; lobby remains unchanged)
+------------------------- */
+#game-section {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 1200px; /* or more if you want more horizontal space */
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+#game-row {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* -------------------------
+   Left Column: Game Info
+------------------------- */
+#game-info {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+#game-info h3 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+#game-info p {
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+/* -------------------------
+   Middle Column: Game Grid & Zoom Controls
+------------------------- */
+#grid-col {
+  text-align: center;
+}
+
+/* Game Grid Frame */
+#game-grid {
+  display: inline-block;
+  position: relative;
+  overflow: auto;  /* Enables scrolling within the grid frame */
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  max-width: 550px;
+  width: 100%; /* Allows shrink on smaller devices */
+  height: 550px;
+  margin: 0 auto;
+}
+
+/* Inner container for grid cells (scaled by JS) */
+#grid-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}
+
+/* Grid Cells */
+.grid-cell {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.15rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+.grid-cell:hover {
+  background-color: #f0f8ff;
+  transform: scale(1.05);
+}
+
+/* Zoom Controls – All buttons share identical blue styling */
+.zoom-controls {
+  margin-top: 10px;
+  text-align: center;
+}
+.zoom-controls button {
+  margin: 0 5px;
+  font-size: 1.2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #6c757d;  /* Bootstrap secondary blue */
+  border: 1px solid #6c757d;
+  color: #fff;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* -------------------------
+   Right Column: Leaderboard
+------------------------- */
+#leaderboard-container-desktop {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+#leaderboard-container-desktop h5 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+#leaderboard-container-desktop ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#leaderboard-container-desktop li {
+  padding: 6px 0;
+  font-size: 1.1rem;
+}
+
+/* -------------------------
+   Mobile Leaderboard (if used)
+------------------------- */
+#leaderboard-container-mobile {
+  display: none;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  max-width: 300px;
+  margin: 20px auto 0;
+  text-align: center;
+}
+#leaderboard-container-mobile h5 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+#leaderboard-container-mobile ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#leaderboard-container-mobile li {
+  padding: 5px 0;
+  font-size: 1rem;
+}
+
+/* -------------------------
+   Modal
+------------------------- */
+.modal-content {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.modal-header {
+  border-bottom: none;
+}
+.modal-title {
+  font-weight: 300;
+}
+.modal-footer button {
+  border-radius: 20px;
+}
+
+/* -------------------------
+   Responsive
+------------------------- */
+
+/* Smartphones (max-width: 600px) */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+  #lobby-section h3 {
+    font-size: 1.2rem;
+  }
+  #game-row {
+    flex-direction: column;
+  }
+  #game-info,
+  #leaderboard-container-desktop {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  #game-grid {
+    max-width: 320px;
+    height: 320px;
+  }
+  .grid-cell {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 0.9rem;
+  }
+  .zoom-controls button {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+}
+
+/* Tablets in Portrait (min-width: 600px and max-width: 900px and orientation: portrait):
+   Stacked vertically, centered, and the game frame takes up nearly full width.
+------------------------- */
+@media (min-width: 600px) and (max-width: 900px) and (orientation: portrait) {
+  #game-row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #game-info,
+  #game-grid,
+  #leaderboard-container-desktop {
+    width: 100%;
+    max-width: 100%; /* allow full width */
+    margin: 0 auto 15px;
+    text-align: center;
+  }
+  #game-grid {
+    max-width: none;
+    width: 100%;       /* game grid stretches to full width of viewport */
+    height: 500px; /* set a larger fixed height */
+  }
+  .grid-cell {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.1rem;
+  }
+  .zoom-controls button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* Tablets in Landscape (min-width: 600px and max-width: 900px and orientation: landscape):
+   Horizontal layout.
+------------------------- */
+@media (min-width: 600px) and (max-width: 900px) and (orientation: landscape) {
+  #game-row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  #game-info {
+    width: auto;
+    margin-right: 20px;
+    text-align: left;
+  }
+  #leaderboard-container-desktop {
+    width: 220px;
+  }
+  #game-grid {
+    max-width: 400px;
+    height: 400px;
+  }
+  .grid-cell {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 1rem;
+  }
+}
+
+/* Desktops (min-width: 900px) */
+@media (min-width: 900px) {
+  #game-grid {
+    max-width: 550px;
+    height: 550px;
+  }
+  .grid-cell {
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 1.15rem;
+  }
+  #leaderboard-container-desktop {
+    width: 280px;
+  }
+}
